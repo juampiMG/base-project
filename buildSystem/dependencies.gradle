@@ -1,0 +1,171 @@
+ext {
+
+    // Android dependencies
+    androidMaterialVersion = '1.1.0-alpha05'
+    servicesVersion = '17.0.0'
+    multidexVersion = '2.0.0'               // https://developer.android.com/jetpack/androidx/migrate
+    lifecycleVersion = '2.0.0-rc01'         // https://developer.android.com/jetpack/androidx/migrate
+    constraintsLayoutVersion = '1.1.2'      // https://developer.android.com/jetpack/androidx/migrate
+    daggerVersion = '2.22.1'                // https://github.com/google/dagger
+
+    // Libraries
+    reactiveAndroidVersion = '2.1.1'        // https://github.com/ReactiveX/RxAndroid
+    reactiveKotlinVersion = '2.2.0'         // https://github.com/ReactiveX/RxKotlin
+    retrofitVersion = '2.5.0'               // https://github.com/square/retrofit
+    okHttpVersion = '3.14.0'                // https://github.com/square/okhttp
+    glideVersion = '4.9.0'                  // https://github.com/bumptech/glide
+    advrecyclerviewVersion = '1.0.0'        // https://github.com/h6ah4i/android-advancedrecyclerview
+    modelmapperVersion = '2.3.2'            // https://github.com/modelmapper/modelmapper
+   //parcelerVersion = '1.1.9'               // https://github.com/johncarl81/parceler
+    javaxAnnotationVersion= '10.0-b28'
+    adapterRetrofitVersion= '2.0.2'
+    jodaTimeVersion = '2.10'                //https://github.com/JodaOrg/joda-time
+    rx2FastAndroidNetworking = '1.0.1'      //https://github.com/amitshekhariitbhu/Fast-Android-Networking/tree/master/rx2-android-networking
+    lottieVersion = '3.0.0'                 // https://github.com/airbnb/lottie-android
+
+    // Testing
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.0'
+    robolectricVersion = '4.2'
+    mockitoVersion = '2.1.0'
+
+//    assertjVersion = '1.1.0'
+//    mockitoKotlinVersion = '1.6.0'
+//    robolectricShadowVersion = '3.4-rc2'
+
+
+
+    assertJAndroidVersion = '1.2.0'
+    androidXTestVersion = '1.1.0-alpha3'
+    androidXTestCoreVersion = '1.0.0'
+    circleIndicatorVersion = '1.2.2'            //https://github.com/ongakuer/CircleIndicator
+
+    // dependencies
+
+    deps = [
+            app : [
+                    implementation: [
+                            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$ext.kotlinVersion",
+                            "androidx.multidex:multidex:$multidexVersion",
+                            "com.google.android.material:material:$androidMaterialVersion",
+                            "androidx.constraintlayout:constraintlayout:$constraintsLayoutVersion",
+
+                            "com.google.dagger:dagger-android-support:$daggerVersion",
+
+                            "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                            "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+                            "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+                            "com.squareup.retrofit2:converter-scalars:$retrofitVersion",
+                            "com.squareup.okhttp3:okhttp:$okHttpVersion",
+                            "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+
+                            "org.modelmapper:modelmapper:$modelmapperVersion",
+                            "io.reactivex.rxjava2:rxandroid:$reactiveAndroidVersion",
+                            "io.reactivex.rxjava2:rxkotlin:${reactiveKotlinVersion}",
+
+                            "com.github.bumptech.glide:glide:$glideVersion",
+                       //     "org.parceler:parceler-api:$parcelerVersion",
+                            "joda-time:joda-time:$jodaTimeVersion",
+                            "com.amitshekhar.android:rx2-android-networking:$rx2FastAndroidNetworking",
+                            "android.arch.lifecycle:extensions:$lifecycleVersion",
+                            "com.airbnb.android:lottie:$lottieVersion"
+                    ],
+                    annotationProcessor : [
+                           // "org.parceler:parceler:$parcelerVersion",
+                            "com.github.bumptech.glide:compiler:$glideVersion",
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                    ],
+                    compileOnly : [
+                    ],
+                    testImplementation : [
+                            "junit:junit:$jUnitVersion",
+                            "org.mockito:mockito-core:$mockitoVersion",
+                            "org.robolectric:robolectric:$robolectricVersion",
+                            "com.squareup.assertj:assertj-android:$assertJAndroidVersion",
+                            "com.google.dagger:dagger-android-support:$daggerVersion"
+                    ],
+                    kapt : [
+                        //    "org.parceler:parceler:$parcelerVersion",
+                            "com.github.bumptech.glide:compiler:$glideVersion",
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                    ]
+            ],
+            domain : [
+                    implementation: [
+                            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$ext.kotlinVersion",
+                          //  "org.parceler:parceler-api:$parcelerVersion",
+                            "com.google.dagger:dagger-android-support:$daggerVersion",
+                            "io.reactivex.rxjava2:rxandroid:$reactiveAndroidVersion",
+                            "io.reactivex.rxjava2:rxkotlin:${reactiveKotlinVersion}",
+                            "org.modelmapper:modelmapper:$modelmapperVersion"
+                    ],
+                    implementationTransitive : [
+
+                    ],
+                    annotationProcessor : [
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                         //   "org.parceler:parceler:$parcelerVersion",
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                    ],
+                    compileOnly : [
+                    ],
+                    testImplementation : [
+                            "junit:junit:$jUnitVersion",
+                            "org.mockito:mockito-core:$mockitoVersion",
+                            "org.robolectric:robolectric:$robolectricVersion",
+                            "androidx.test:rules:$androidXTestVersion",
+                            "androidx.test:runner:$androidXTestVersion",
+                            "androidx.test:core:$androidXTestCoreVersion",
+                            "com.squareup.assertj:assertj-android:$assertJAndroidVersion",
+                            "com.google.dagger:dagger-compiler:$daggerVersion"
+                    ],
+                    kapt : [
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                          //  "org.parceler:parceler:$parcelerVersion"
+                    ]
+            ],
+            data : [
+                    implementation: [
+                            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$ext.kotlinVersion",
+                            "com.google.android.gms:play-services-gcm:$servicesVersion",
+                            "com.google.dagger:dagger-android-support:$daggerVersion",
+
+                            "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                            "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+                            "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+                            "com.squareup.retrofit2:converter-scalars:$retrofitVersion",
+                            "com.squareup.okhttp3:okhttp:$okHttpVersion",
+                            "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+
+                       //     "org.parceler:parceler-api:$parcelerVersion",
+                            "io.reactivex.rxjava2:rxandroid:$reactiveAndroidVersion",
+                            "io.reactivex.rxjava2:rxkotlin:${reactiveKotlinVersion}",
+                            "org.glassfish:javax.annotation:$javaxAnnotationVersion",
+                            "org.modelmapper:modelmapper:$modelmapperVersion",
+                            "com.amitshekhar.android:rx2-android-networking:$rx2FastAndroidNetworking",
+                    ],
+                    implementationTransitive : [
+
+                    ],
+                    annotationProcessor : [
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                          //  "org.parceler:parceler:$parcelerVersion",
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                    ],
+                    compileOnly : [
+                    ],
+                    testImplementation : [
+                    ],
+                    kapt : [
+                            "com.google.dagger:dagger-compiler:$daggerVersion",
+                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                    ]
+            ]
+    ]
+
+}

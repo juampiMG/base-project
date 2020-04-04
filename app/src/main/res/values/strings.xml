@@ -1,0 +1,11 @@
+<resources>
+    <string name="oh_hell">¡Oh, hell!</string>
+    <string name="default_error">An unexpected error has occurred, please try again later</string>
+    <string name="accept">Accept</string>
+    <string name="count_back_exit_message">Press again the back button to exit</string>
+    <string name="information">Information</string>
+    <string name="error_title_oops">Ups!</string>
+    <string name="ok">Ok</string>
+    <string name="error_server">There was a problem connecting to the server. Please, verify your
+    Internet connection and try again.</string>
+</resources>
