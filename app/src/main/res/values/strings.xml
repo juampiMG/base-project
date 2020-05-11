@@ -4,6 +4,10 @@
     <string name="accept">Accept</string>
     <string name="count_back_exit_message">Press again the back button to exit</string>
     <string name="information">Information</string>
+    <string name="sample_button">Basic Child</string>
+    <string name="manage_images">Activity Api</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="pick_from_gallery">Pick From Gallery</string>
     <string name="error_title_oops">Ups!</string>
     <string name="ok">Ok</string>
     <string name="error_server">There was a problem connecting to the server. Please, verify your

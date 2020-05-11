@@ -1,7 +1,6 @@
 package com.jp.app.common
 
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -15,6 +14,7 @@ import com.jp.app.common.view.IBaseFragmentCallback
 import com.jp.app.helper.DialogHelper
 import com.jp.app.helper.NavigationHelper
 import com.jp.app.model.AlertDialogModel
+import com.jp.app.utils.NavigationUtils
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -32,14 +32,16 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, I
 
     @Inject
     lateinit var mExtras: Bundle  //Useful to pass data between fragments with the same activity
+
     @Inject
     lateinit var mDialogHelper: DialogHelper
+
     @Inject
     lateinit var mNavigationHelper: NavigationHelper
 
     private var mLayoutId: Int = 0
 
-    lateinit var mCurrentFragment : Fragment
+    lateinit var mCurrentFragment: Fragment
 
     private var mCompositeDisposable: CompositeDisposable? = null
 
@@ -106,32 +108,32 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, I
     override fun alertDialogTwoButtons(alertDialogModel: AlertDialogModel) {
         val title = if (alertDialogModel.title == -1) "" else getString(alertDialogModel.title)
         val message = if (alertDialogModel.message == -1) "" else getStringFromListOfArgs(
-            alertDialogModel.message,
-            alertDialogModel.messageArg
+                alertDialogModel.message,
+                alertDialogModel.messageArg
         )
         mDialogHelper.alertDialogTwoButtons(
-            title,
-            message,
-            getString(alertDialogModel.leftButtonTitle),
-            alertDialogModel.leftButtonListener,
-            getString(alertDialogModel.rightButtonTitle),
-            alertDialogModel.rightButtonListener,
-            true
+                title,
+                message,
+                getString(alertDialogModel.leftButtonTitle),
+                alertDialogModel.leftButtonListener,
+                getString(alertDialogModel.rightButtonTitle),
+                alertDialogModel.rightButtonListener,
+                true
         )
     }
 
     override fun alertDialogOneButton(alertDialogModel: AlertDialogModel) {
         val title = if (alertDialogModel.title == -1) "" else getString(alertDialogModel.title)
         val message = if (alertDialogModel.message == -1) "" else getStringFromListOfArgs(
-            alertDialogModel.message,
-            alertDialogModel.messageArg
+                alertDialogModel.message,
+                alertDialogModel.messageArg
         )
         mDialogHelper.alertDialogOneButton(
-            title,
-            message,
-            getString(alertDialogModel.rightButtonTitle),
-            alertDialogModel.rightButtonListener,
-            true
+                title,
+                message,
+                getString(alertDialogModel.rightButtonTitle),
+                alertDialogModel.rightButtonListener,
+                true
         )
     }
 
@@ -162,6 +164,17 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, I
 //        val toast = CheckOkAlertToastComponent(this)
 //        toast.setAlertText(getString(alertText))
 //        toast.showAlert()
+    }
+
+
+    internal fun loadFragment(addToBackStack:Boolean) {
+        NavigationUtils.navigateToFragment(
+                activity = this,
+                supportFragmentManager = this.supportFragmentManager,
+                fragment = mCurrentFragment,
+                contentFrame = R.id.content,
+                addToBackStack = addToBackStack
+        )
     }
 
 

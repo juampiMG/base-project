@@ -1,11 +1,11 @@
-package com.jp.app.ui.sample.viewModel
+package com.jp.app.ui.activityApi.viewModel
 
 import com.jp.app.common.viewModel.BaseViewModel
 import javax.inject.Inject
 
-class SampleViewModel
+class ActAPIViewModel
 @Inject
-constructor() : BaseViewModel(), ISampleViewModel {
+constructor() : BaseViewModel(), IActAPIViewModel {
 
     override fun loadData() {
 

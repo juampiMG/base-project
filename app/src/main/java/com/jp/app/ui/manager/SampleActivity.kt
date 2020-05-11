@@ -1,16 +1,15 @@
-package com.jp.app.ui.sample
+package com.jp.app.ui.manager
 
 import android.os.Bundle
 import com.jp.app.R
 import com.jp.app.common.BaseActivity
-import com.jp.app.ui.sample.view.SampleFragment
-import com.jp.app.utils.NavigationUtils
+import com.jp.app.ui.manager.view.ManagerFragment
 
 /**
  * Remember to add activity to the AndroidManifest.xml and to the InjectorModule.kt
  */
 class SampleActivity : BaseActivity(),
-        SampleFragment.FragmentCallback {
+        ManagerFragment.FragmentCallback {
 
     override fun getLayoutId(): Int {
         return R.layout.generic_activity
@@ -19,25 +18,15 @@ class SampleActivity : BaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            mCurrentFragment = SampleFragment.newInstance(mExtras)
-            NavigationUtils.navigateToFragment(
-                    activity = this,
-                    supportFragmentManager = this.supportFragmentManager,
-                    fragment = mCurrentFragment,
-                    contentFrame = R.id.content,
-                    addToBackStack = false
-            )
+            mCurrentFragment = ManagerFragment.newInstance(mExtras)
+            loadFragment(addToBackStack = false)
         } else {
             supportFragmentManager.findFragmentById(R.id.content)?.let {
                 mCurrentFragment = it
+                loadFragment(addToBackStack = false)
             }
         }
 
-        setViews()
-
     }
 
-    private fun setViews() {
-
-    }
 }
