@@ -10,6 +10,8 @@ Dagger 2 (Dagger Injector)
 
 Retrofit2
 
+RxKotlin 2
+
 LiveData
 
 Lottie
