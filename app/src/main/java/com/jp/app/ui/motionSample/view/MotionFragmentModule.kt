@@ -1,4 +1,4 @@
-package com.jp.app.ui.activityApi.view
+package com.jp.app.ui.motionSample.view
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -7,20 +7,20 @@ import com.jp.app.common.BaseFragmentChildModule.FRAGMENT_CHILD
 import com.jp.app.common.ViewModelProviderFactory
 import com.jp.app.common.view.IBaseFragmentCallback
 import com.jp.app.injector.scope.PerChildFragment
-import com.jp.app.ui.activityApi.viewModel.ActAPIViewModel
-import com.jp.app.ui.activityApi.viewModel.IActAPIViewModel
+import com.jp.app.ui.motionSample.viewModel.MotionViewModel
+import com.jp.app.ui.motionSample.viewModel.IMotionViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
 
 @Module(includes = [BaseFragmentChildModule::class])
-abstract class ActAPIFragmentModule {
+abstract class MotionFragmentModule {
 
     @Binds
     @Named(FRAGMENT_CHILD)
     @PerChildFragment
-    internal abstract fun fragment(fragment: ActAPIFragment): Fragment
+    internal abstract fun fragment(fragment: MotionFragment): Fragment
 
     @Module
     companion object {
@@ -30,7 +30,7 @@ abstract class ActAPIFragmentModule {
          */
         @JvmStatic
         @Provides
-        fun provideCallback(fragment: ActAPIFragment): IBaseFragmentCallback {
+        fun provideCallback(fragment: MotionFragment): IBaseFragmentCallback {
             return fragment
         }
 
@@ -39,8 +39,8 @@ abstract class ActAPIFragmentModule {
          */
         @JvmStatic
         @Provides
-        fun provideViewModel(fragment: ActAPIFragment): IActAPIViewModel {
-            return ViewModelProvider(fragment, ViewModelProviderFactory(ActAPIViewModel())).get(ActAPIViewModel::class.java)
+        fun provideViewModel(fragment: MotionFragment): IMotionViewModel {
+            return ViewModelProvider(fragment, ViewModelProviderFactory(MotionViewModel())).get(MotionViewModel::class.java)
         }
     }
 

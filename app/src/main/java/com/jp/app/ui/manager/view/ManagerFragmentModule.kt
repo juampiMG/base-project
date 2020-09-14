@@ -6,8 +6,8 @@ import com.jp.app.common.BaseFragmentModule
 import com.jp.app.common.ViewModelProviderFactory
 import com.jp.app.injector.scope.PerChildFragment
 import com.jp.app.injector.scope.PerFragment
-import com.jp.app.ui.activityApi.view.ActAPIFragment
-import com.jp.app.ui.activityApi.view.ActAPIFragmentModule
+import com.jp.app.ui.motionSample.view.MotionFragment
+import com.jp.app.ui.motionSample.view.MotionFragmentModule
 import com.jp.app.ui.manager.viewModel.IManagerViewModel
 import com.jp.app.ui.manager.viewModel.ManagerViewModel
 import com.jp.app.ui.menu.view.MenuFragment
@@ -74,10 +74,10 @@ abstract class ManagerFragmentModule {
 
     @Binds
     @PerFragment
-    internal abstract fun actAPIFragmentCallback(fragment: ManagerFragment): ActAPIFragment.FragmentCallback
+    internal abstract fun actAPIFragmentCallback(fragment: ManagerFragment): MotionFragment.FragmentCallback
 
     @PerChildFragment
-    @ContributesAndroidInjector(modules = [ActAPIFragmentModule::class])
-    internal abstract fun actAPIFragmentInjector(): ActAPIFragment
+    @ContributesAndroidInjector(modules = [MotionFragmentModule::class])
+    internal abstract fun actAPIFragmentInjector(): MotionFragment
 
 }

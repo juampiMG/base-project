@@ -5,11 +5,11 @@
     <string name="count_back_exit_message">Press again the back button to exit</string>
     <string name="information">Information</string>
     <string name="sample_button">Basic Child</string>
-    <string name="manage_images">Activity Api</string>
-    <string name="take_a_picture">Take a Picture</string>
-    <string name="pick_from_gallery">Pick From Gallery</string>
+    <string name="motion_button">Motion Sample</string>
+    <string name="button_translation">Translation</string>
+    <string name="button_rotation">Rotation</string>
     <string name="error_title_oops">Ups!</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="error_server">There was a problem connecting to the server. Please, verify your
     Internet connection and try again.</string>
 </resources>

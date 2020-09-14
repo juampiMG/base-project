@@ -10,7 +10,7 @@ interface EncryptionInterface {
 
     private companion object {
         const val _ANDROID_KEY_STORE = "AndroidKeyStore"
-        const val _KEY_ALIAS = BuildConfig.APPLICATION_ID + ".password"
+        const val _KEY_ALIAS = BuildConfig.LIBRARY_PACKAGE_NAME + ".password"
         const val _ENCRYPTED_KEY = "android.password.encryptedKey"
 
     }

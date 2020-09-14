@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
@@ -169,11 +170,9 @@ abstract class BaseFragment<TViewModel : IBaseViewModel, TCallback : IBaseFragme
     }
 
     fun setCheckOkToastAndShow(alertText: Int) {
-//        context?.let {
-//            val toast = CheckOkAlertToastComponent(it)
-//            toast.setAlertText(getString(alertText))
-//            toast.showAlert()
-//        }
+        context?.let {
+            Toast.makeText(it, getString(alertText), Toast.LENGTH_LONG).show()
+        }
     }
 
 
