@@ -17,6 +17,9 @@ import javax.inject.Inject
 
 /**
  * Parent Fragment Manager
+ * It is used to manage the movement between fragments into the childFragmentManager
+ * It is used to not put a lot of responsibility to the activity.
+ * In this case maybe is too much but when it is included into a navigation make the code more clean
  */
 class ManagerFragment @Inject constructor() : BaseFragmentParent<ManagerViewModel, ManagerFragment.FragmentCallback>(),
         MenuFragment.FragmentCallback,
