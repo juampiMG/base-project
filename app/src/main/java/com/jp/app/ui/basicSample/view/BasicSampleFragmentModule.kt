@@ -1,4 +1,4 @@
-package com.jp.app.ui.childSample.view
+package com.jp.app.ui.basicSample.view
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -7,8 +7,8 @@ import com.jp.app.common.BaseFragmentChildModule.FRAGMENT_CHILD
 import com.jp.app.common.ViewModelProviderFactory
 import com.jp.app.common.view.IBaseFragmentCallback
 import com.jp.app.injector.scope.PerChildFragment
-import com.jp.app.ui.childSample.viewModel.IChildSampleViewModel
-import com.jp.app.ui.childSample.viewModel.ChildSampleViewModel
+import com.jp.app.ui.basicSample.viewModel.IBasicSampleViewModel
+import com.jp.app.ui.basicSample.viewModel.BasicSampleViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,11 +16,11 @@ import javax.inject.Named
 
 
 @Module(includes = [BaseFragmentChildModule::class])
-abstract class ChildSampleFragmentModule {
+abstract class BasicSampleFragmentModule {
     @Binds
     @Named(FRAGMENT_CHILD)
     @PerChildFragment
-    internal abstract fun fragment(fragment: ChildSampleFragment): Fragment
+    internal abstract fun fragment(fragment: BasicSampleFragment): Fragment
 
     @Module
     companion object {
@@ -30,7 +30,7 @@ abstract class ChildSampleFragmentModule {
          */
         @JvmStatic
         @Provides
-        fun provideCallback(fragment: ChildSampleFragment): IBaseFragmentCallback {
+        fun provideCallback(fragment: BasicSampleFragment): IBaseFragmentCallback {
             return fragment
         }
 
@@ -39,8 +39,8 @@ abstract class ChildSampleFragmentModule {
          */
         @JvmStatic
         @Provides
-        fun provideViewModel(fragment: ChildSampleFragment): IChildSampleViewModel {
-            return ViewModelProvider(fragment, ViewModelProviderFactory(ChildSampleViewModel())).get(ChildSampleViewModel::class.java)
+        fun provideViewModel(fragment: BasicSampleFragment): IBasicSampleViewModel {
+            return ViewModelProvider(fragment, ViewModelProviderFactory(BasicSampleViewModel())).get(BasicSampleViewModel::class.java)
         }
     }
 }

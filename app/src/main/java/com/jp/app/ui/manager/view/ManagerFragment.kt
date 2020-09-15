@@ -10,7 +10,7 @@ import com.jp.app.common.view.IBaseFragmentCallback
 import com.jp.app.ui.motionSample.view.MotionFragment
 import com.jp.app.ui.manager.viewModel.ManagerViewModel
 import com.jp.app.ui.menu.view.MenuFragment
-import com.jp.app.ui.childSample.view.ChildSampleFragment
+import com.jp.app.ui.basicSample.view.BasicSampleFragment
 import com.jp.app.utils.NavigationUtils
 import javax.inject.Inject
 
@@ -20,7 +20,7 @@ import javax.inject.Inject
  */
 class ManagerFragment @Inject constructor() : BaseFragmentParent<ManagerViewModel, ManagerFragment.FragmentCallback>(),
         MenuFragment.FragmentCallback,
-        ChildSampleFragment.FragmentCallback,
+        BasicSampleFragment.FragmentCallback,
         MotionFragment.FragmentCallback {
 
     private lateinit var mOptionLoaded: OPTIONS
@@ -94,7 +94,7 @@ class ManagerFragment @Inject constructor() : BaseFragmentParent<ManagerViewMode
     override fun setOptionLoaded() {
         when (currentChildFragment) {
             is MenuFragment -> mOptionLoaded = OPTIONS.MENU
-            is ChildSampleFragment -> mOptionLoaded = OPTIONS.SAMPLE
+            is BasicSampleFragment -> mOptionLoaded = OPTIONS.SAMPLE
             is MotionFragment -> mOptionLoaded = OPTIONS.ACT_API
         }
     }
@@ -104,7 +104,7 @@ class ManagerFragment @Inject constructor() : BaseFragmentParent<ManagerViewMode
     override fun loadOption(option: OPTIONS) {
         when (option) {
             OPTIONS.SAMPLE -> {
-                currentChildFragment = ChildSampleFragment.newInstance(Bundle())
+                currentChildFragment = BasicSampleFragment.newInstance(Bundle())
             }
             OPTIONS.ACT_API -> {
                 currentChildFragment = MotionFragment.newInstance(Bundle())

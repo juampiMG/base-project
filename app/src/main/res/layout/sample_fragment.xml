@@ -6,6 +6,19 @@
     android:background="@color/cyan"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingTop="17dp"
+        android:paddingStart="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/version_server"
         style="@style/AsapBold.S18"

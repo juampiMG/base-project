@@ -1,13 +1,18 @@
-package com.jp.app.ui.childSample.view
+package com.jp.app.ui.basicSample.view
 
 import android.os.Bundle
 import com.jp.app.R
 import com.jp.app.common.view.BaseFragmentChild
 import com.jp.app.common.view.IBaseFragmentChildCallback
-import com.jp.app.ui.childSample.viewModel.ChildSampleViewModel
+import com.jp.app.ui.basicSample.viewModel.BasicSampleViewModel
 
-
-class ChildSampleFragment : BaseFragmentChild<ChildSampleViewModel, ChildSampleFragment.FragmentCallback>() {
+/**
+ * Basic Child Fragment
+ * When press back move to the menu fragment
+ * It is managed by ChildFragmentManager from Manager Fragment
+ * Manager Fragment is responsible to manage the childs Fragments
+ */
+class BasicSampleFragment : BaseFragmentChild<BasicSampleViewModel, BasicSampleFragment.FragmentCallback>() {
     override fun getLayoutId(): Int {
         return R.layout.sample_fragment
     }
@@ -31,7 +36,7 @@ class ChildSampleFragment : BaseFragmentChild<ChildSampleViewModel, ChildSampleF
     }
 
     companion object {
-        fun newInstance(bundle: Bundle?) = ChildSampleFragment().apply {
+        fun newInstance(bundle: Bundle?) = BasicSampleFragment().apply {
             arguments = bundle ?: Bundle()
         }
     }

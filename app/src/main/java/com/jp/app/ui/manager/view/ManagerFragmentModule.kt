@@ -12,8 +12,8 @@ import com.jp.app.ui.manager.viewModel.IManagerViewModel
 import com.jp.app.ui.manager.viewModel.ManagerViewModel
 import com.jp.app.ui.menu.view.MenuFragment
 import com.jp.app.ui.menu.view.MenuFragmentModule
-import com.jp.app.ui.childSample.view.ChildSampleFragment
-import com.jp.app.ui.childSample.view.ChildSampleFragmentModule
+import com.jp.app.ui.basicSample.view.BasicSampleFragment
+import com.jp.app.ui.basicSample.view.BasicSampleFragmentModule
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -65,11 +65,11 @@ abstract class ManagerFragmentModule {
 
     @Binds
     @PerFragment
-    internal abstract fun sampleFragmentCallback(fragment: ManagerFragment): ChildSampleFragment.FragmentCallback
+    internal abstract fun sampleFragmentCallback(fragment: ManagerFragment): BasicSampleFragment.FragmentCallback
 
     @PerChildFragment
-    @ContributesAndroidInjector(modules = [ChildSampleFragmentModule::class])
-    internal abstract fun sampleFragmentInjector(): ChildSampleFragment
+    @ContributesAndroidInjector(modules = [BasicSampleFragmentModule::class])
+    internal abstract fun sampleFragmentInjector(): BasicSampleFragment
 
 
     @Binds

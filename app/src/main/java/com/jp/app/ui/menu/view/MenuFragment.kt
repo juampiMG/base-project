@@ -9,6 +9,14 @@ import com.jp.app.ui.menu.viewModel.MenuViewModel
 import kotlinx.android.synthetic.main.menu_fragment.*
 
 
+/**
+ * Menu Child Fragment
+ * When press back close the pp
+ * It is managed by ChildFragmentManager from Manager Fragment
+ * Manager Fragment is responsible to manage the child Fragments
+ * Menu Fragment has the buttons to move between fragment options, in this case MotionFragment and BasicSample
+ */
+
 class MenuFragment : BaseFragmentChild<MenuViewModel, MenuFragment.FragmentCallback>() {
 
     override fun getLayoutId(): Int {

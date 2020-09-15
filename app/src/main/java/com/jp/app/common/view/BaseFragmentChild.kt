@@ -1,6 +1,7 @@
 package com.jp.app.common.view
 
 import com.jp.app.common.viewModel.IBaseViewModel
+import kotlinx.android.synthetic.main.sample_fragment.*
 import javax.inject.Inject
 
 /**
@@ -18,9 +19,9 @@ abstract class BaseFragmentChild<TChildViewModel : IBaseViewModel, TChildCallbac
 
 
     private fun setUpBackButtonListener() {
-//        back_button?.setOnClickListener {
-//            mChildCallback.childBackPressed()
-//        }
+        back_button?.setOnClickListener {
+            mChildCallback.childBackPressed()
+        }
     }
 
     override fun onResume() {
