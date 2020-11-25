@@ -3,7 +3,7 @@ package com.jp.app.helper
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.jp.app.R
-import com.jp.app.ui.manager.SampleActivity
+import com.jp.app.ui.basicSample.SampleActivity
 import com.jp.app.utils.NavigationUtils
 
 class NavigationHelper constructor(var mActivity: FragmentActivity, var mExtras: Bundle) {

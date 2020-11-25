@@ -2,8 +2,8 @@ package com.jp.app.ui.basicSample.view
 
 import android.os.Bundle
 import com.jp.app.R
-import com.jp.app.common.view.BaseFragmentChild
-import com.jp.app.common.view.IBaseFragmentChildCallback
+import com.jp.app.common.view.BaseFragment
+import com.jp.app.common.view.IBaseFragmentCallback
 import com.jp.app.ui.basicSample.viewModel.BasicSampleViewModel
 
 /**
@@ -12,12 +12,12 @@ import com.jp.app.ui.basicSample.viewModel.BasicSampleViewModel
  * It is managed by ChildFragmentManager from Manager Fragment
  * Manager Fragment is responsible to manage the childs Fragments
  */
-class BasicSampleFragment : BaseFragmentChild<BasicSampleViewModel, BasicSampleFragment.FragmentCallback>() {
+class BasicSampleFragment : BaseFragment<BasicSampleViewModel, BasicSampleFragment.FragmentCallback>() {
     override fun getLayoutId(): Int {
         return R.layout.sample_fragment
     }
 
-    interface FragmentCallback : IBaseFragmentChildCallback {
+    interface FragmentCallback : IBaseFragmentCallback {
     }
 
 
@@ -41,10 +41,13 @@ class BasicSampleFragment : BaseFragmentChild<BasicSampleViewModel, BasicSampleF
         }
     }
 
-    override fun setUpChildViews() {
+    override fun setUpViews() {
+
     }
 
     override fun applyRTLChanges() {
     }
+
+
 
 }

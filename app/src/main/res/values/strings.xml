@@ -3,7 +3,7 @@
     <string name="default_error">An unexpected error has occurred, please try again later</string>
     <string name="accept">Accept</string>
     <string name="count_back_exit_message">Press again the back button to exit</string>
-    <string name="information">Information</string>
+    <string name="hello_world">Hello World!</string>
     <string name="sample_button">Basic Child</string>
     <string name="motion_button">Motion Sample</string>
     <string name="button_translation">Translation</string>
