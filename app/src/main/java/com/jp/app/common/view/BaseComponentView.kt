@@ -1,4 +1,4 @@
-package com.jp.app.common
+package com.jp.app.common.view
 
 import android.content.Context
 import android.util.AttributeSet

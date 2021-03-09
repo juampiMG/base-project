@@ -122,7 +122,7 @@ class DialogHelper(private val mActivity: FragmentActivity, private val mFragmen
      * this is specific for errors, has the Titles set and always has the same behaviour for the button -> close
      */
     fun errorMessageEventDialog(descriptionError: String) {
-        val rightListener = DialogInterface.OnClickListener { dialog, which ->
+        val rightListener = DialogInterface.OnClickListener { dialog, _ ->
             dialog.dismiss()
         }
 

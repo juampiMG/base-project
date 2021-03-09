@@ -11,6 +11,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import com.jp.app.utils.ViewUtils.isRTL
 
+interface IBaseDialogFragmentCallback {}
+
 abstract class BaseDialogFragment<TCallback : IBaseDialogFragmentCallback> : DialogFragment() {
 
     protected var mCallback: TCallback? = null

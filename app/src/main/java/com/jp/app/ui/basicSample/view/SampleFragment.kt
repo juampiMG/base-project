@@ -4,20 +4,19 @@ import android.os.Bundle
 import com.jp.app.R
 import com.jp.app.common.view.BaseFragment
 import com.jp.app.common.view.IBaseFragmentCallback
-import com.jp.app.ui.basicSample.viewModel.BasicSampleViewModel
+import com.jp.app.ui.basicSample.activity.view.SampleActivity
+import com.jp.app.ui.basicSample.viewModel.SampleFragmentViewModel
 
 /**
- * Basic Child Fragment
- * When press back move to the menu fragment
- * It is managed by ChildFragmentManager from Manager Fragment
- * Manager Fragment is responsible to manage the childs Fragments
+ * Basic Fragment
  */
-class BasicSampleFragment : BaseFragment<BasicSampleViewModel, BasicSampleFragment.FragmentCallback>() {
+class SampleFragment : BaseFragment<SampleFragmentViewModel, SampleFragment.FragmentCallback>() {
     override fun getLayoutId(): Int {
         return R.layout.sample_fragment
     }
 
     interface FragmentCallback : IBaseFragmentCallback {
+        fun loadFromActivityGame ()
     }
 
 
@@ -33,10 +32,13 @@ class BasicSampleFragment : BaseFragment<BasicSampleViewModel, BasicSampleFragme
     }
 
     override fun subscribeToLiveData() {
+        mViewModel.loadGame().observe(viewLifecycleOwner, {
+            mCallback.loadFromActivityGame()
+        })
     }
 
     companion object {
-        fun newInstance(bundle: Bundle?) = BasicSampleFragment().apply {
+        fun newInstance(bundle: Bundle?) = SampleFragment().apply {
             arguments = bundle ?: Bundle()
         }
     }

@@ -1,4 +1,4 @@
-package com.jp.app.common
+package com.jp.app.common.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

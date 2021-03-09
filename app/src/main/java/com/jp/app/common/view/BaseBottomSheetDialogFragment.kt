@@ -11,7 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jp.app.R
 import com.jp.app.utils.ViewUtils.isRTL
 
-
+interface IBaseBottomSheetFragmentCallback {}
 /**
  * Base for the BottomSheetDialogFragment of the project
  */

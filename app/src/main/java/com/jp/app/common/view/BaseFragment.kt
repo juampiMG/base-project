@@ -2,34 +2,25 @@ package com.jp.app.common.view
 
 import android.app.Activity
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.textfield.TextInputEditText
-import com.jp.app.common.BaseActivity
 import com.jp.app.common.BaseFragmentModule
-import com.jp.app.common.viewModel.IBaseViewModel
+import com.jp.app.common.activity.IBaseActivityCallback
+import com.jp.app.common.viewModel.IBaseFragmentViewModel
 import com.jp.app.helper.DialogHelper
 import com.jp.app.helper.NavigationHelper
-import com.jp.app.model.AlertDialogModel
 import com.jp.app.utils.GeneralUtils
 import com.jp.app.utils.ViewUtils.isRTL
 import dagger.android.AndroidInjector
@@ -41,7 +32,9 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
 
-abstract class BaseFragment<TViewModel : IBaseViewModel, TCallback : IBaseFragmentCallback> : DaggerFragment(), IBaseFragmentCallback {
+interface IBaseFragmentCallback : IBaseActivityCallback {}
+
+abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBaseFragmentCallback> : DaggerFragment() {
 
     @Inject
     @field:Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
@@ -49,14 +42,19 @@ abstract class BaseFragment<TViewModel : IBaseViewModel, TCallback : IBaseFragme
 
     @Inject
     lateinit var mCallback: TCallback
+
     @Inject
     lateinit var mViewModel: TViewModel
+
     @Inject
     lateinit var mNavigationHelper: NavigationHelper
+
     @Inject
     lateinit var mDialogHelper: DialogHelper
+
     @Inject
     lateinit var mExtras: Bundle
+
     @Inject
     lateinit var mActivity: FragmentActivity
 
@@ -128,12 +126,12 @@ abstract class BaseFragment<TViewModel : IBaseViewModel, TCallback : IBaseFragme
      * to the fragment view <include layout="@layout/generic_loading" />
      */
     private fun subscribeLoading() {
-        mViewModel.showIsLoading().observe(viewLifecycleOwner, Observer { isLoading ->
+        mViewModel.showIsLoading().observe(viewLifecycleOwner,  { isLoading ->
             if (isLoading != null) isLoadingAtFragment(isLoading)
         })
     }
 
-    fun isLoadingAtFragment(load: Boolean) {
+    private fun isLoadingAtFragment(load: Boolean) {
         generic_loading?.visibility = if (load) VISIBLE else GONE
     }
 
@@ -141,40 +139,27 @@ abstract class BaseFragment<TViewModel : IBaseViewModel, TCallback : IBaseFragme
      * Subscribe to show the Alert Dialogs
      */
     private fun subscribeToAlertDialogs() {
-        mViewModel.showAlertDialogTwoButtons().observe(viewLifecycleOwner, Observer { alertDialogModel ->
-            if (alertDialogModel != null) (mActivity as BaseActivity).alertDialogTwoButtons(alertDialogModel)
+        mViewModel.showAlertDialogTwoButtons().observe(viewLifecycleOwner, { alertDialogModel ->
+            if (alertDialogModel != null) mCallback.showAlertDialogTwoButtons(alertDialogModel)
         })
 
-        mViewModel.showAlertDialogOneButton().observe(viewLifecycleOwner, Observer { alertDialogModel ->
-            if (alertDialogModel != null) (mActivity as BaseActivity).alertDialogOneButton(alertDialogModel)
+        mViewModel.showAlertDialogOneButton().observe(viewLifecycleOwner, { alertDialogModel ->
+            if (alertDialogModel != null) mCallback.showAlertDialogOneButton(alertDialogModel)
         })
 
-        mViewModel.showErrorMessageDialog().observe(viewLifecycleOwner, Observer { error ->
-            if (error != null) (mActivity as BaseActivity).errorMessageDialog(error)
+        mViewModel.showErrorMessageDialog().observe(viewLifecycleOwner, { error ->
+            if (error != null) mCallback.showErrorMessageDialog(error)
         })
 
-        mViewModel.showErrorMessageDialogString().observe(viewLifecycleOwner, Observer { error ->
-             (mActivity as BaseActivity).errorMessageDialog(error)
+        mViewModel.showErrorMessageDialogString().observe(viewLifecycleOwner, { error ->
+            mCallback.showErrorMessageDialog(error)
         })
 
-        mViewModel.showDisplayServerErrorToast().observe(viewLifecycleOwner, Observer {
-            (mActivity as BaseActivity).errorServerMessageToast()
-        })
-
-        mViewModel.showCheckOkAlertToast().observe(viewLifecycleOwner, Observer { alertResource ->
-            if (alertResource != null) {
-                setCheckOkToastAndShow(alertResource)
-            }
+        mViewModel.showDisplayServerErrorToast().observe(viewLifecycleOwner, {
+            mCallback.showErrorServerMessageToast()
         })
 
     }
-
-    fun setCheckOkToastAndShow(alertText: Int) {
-        context?.let {
-            Toast.makeText(it, getString(alertText), Toast.LENGTH_LONG).show()
-        }
-    }
-
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
@@ -202,49 +187,6 @@ abstract class BaseFragment<TViewModel : IBaseViewModel, TCallback : IBaseFragme
     fun getParentActivity(): Activity? {
         return mActivity
     }
-
-    // =============== IBaseFragmentCallback ===========================================================================
-
-    override fun isLoading(loading: Boolean) {
-        (mActivity as BaseActivity).isLoading(loading)
-    }
-
-    override fun alertDialogTwoButtons(alertDialogModel: AlertDialogModel) {
-        (mActivity as BaseActivity).alertDialogTwoButtons(alertDialogModel)
-    }
-
-    override fun alertDialogOneButton(alertDialogModel: AlertDialogModel) {
-        (mActivity as BaseActivity).alertDialogOneButton(alertDialogModel)
-    }
-
-    override fun errorMessageDialog(descriptionError: Int) {
-        (mActivity as BaseActivity).errorMessageDialog(descriptionError)
-    }
-
-    override fun errorMessageDialog(descriptionError: String?) {
-        (mActivity as BaseActivity).errorMessageDialog(descriptionError)
-    }
-
-    override fun errorMessageToast(descriptionError: Throwable) {
-        (mActivity as BaseActivity).errorMessageToast(descriptionError)
-    }
-
-    override fun errorServerMessageToast() {
-        (mActivity as BaseActivity).errorServerMessageToast()
-    }
-
-
-    fun TextInputEditText.onChange(cb: (String) -> Unit) {
-        this.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                cb(s.toString())
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-    }
-
 
     /**
      * Convenience method you can use instead of the original [.requestPermissions].
@@ -312,14 +254,6 @@ abstract class BaseFragment<TViewModel : IBaseViewModel, TCallback : IBaseFragme
 
     fun showKeyboard() {
         GeneralUtils.showSoftKeyboard(mActivity)
-    }
-
-    interface CustomTextWatcher : TextWatcher {
-        override fun afterTextChanged(s: Editable?) {}
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
 
     @LayoutRes

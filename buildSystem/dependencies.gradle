@@ -10,6 +10,7 @@ ext {
     androidxLifecycleVersion = '2.2.0'
     androidxActivityVersion = '1.2.0-alpha04'
     androidxFragmentVersion = '1.3.0-alpha04'
+    appCompatVersion = '1.2.0'               // https://developer.android.com/jetpack/androidx/releases/appcompat
 
     // Libraries
     reactiveAndroidVersion = '2.1.1'        // https://github.com/ReactiveX/RxAndroid
@@ -66,12 +67,10 @@ ext {
                             "joda-time:joda-time:$jodaTimeVersion",
                             "com.amitshekhar.android:rx2-android-networking:$rx2FastAndroidNetworking",
                             "android.arch.lifecycle:extensions:$lifecycleVersion",
-                            "com.airbnb.android:lottie:$lottieVersion"
+                            "com.airbnb.android:lottie:$lottieVersion",
+                            "androidx.appcompat:appcompat:$appCompatVersion"
                     ],
                     annotationProcessor : [
-                            "com.github.bumptech.glide:compiler:$glideVersion",
-                            "com.google.dagger:dagger-compiler:$daggerVersion",
-                            "com.google.dagger:dagger-android-processor:$daggerVersion"
                     ],
                     compileOnly : [
                     ],
@@ -101,10 +100,6 @@ ext {
 
                     ],
                     annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:$daggerVersion",
-                         //   "org.parceler:parceler:$parcelerVersion",
-                            "com.google.dagger:dagger-compiler:$daggerVersion",
-                            "com.google.dagger:dagger-android-processor:$daggerVersion"
                     ],
                     compileOnly : [
                     ],
@@ -121,7 +116,6 @@ ext {
                     kapt : [
                             "com.google.dagger:dagger-compiler:$daggerVersion",
                             "com.google.dagger:dagger-android-processor:$daggerVersion"
-                          //  "org.parceler:parceler:$parcelerVersion"
                     ]
             ],
             data : [
@@ -137,7 +131,6 @@ ext {
                             "com.squareup.okhttp3:okhttp:$okHttpVersion",
                             "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
 
-                       //     "org.parceler:parceler-api:$parcelerVersion",
                             "io.reactivex.rxjava2:rxandroid:$reactiveAndroidVersion",
                             "io.reactivex.rxjava2:rxkotlin:${reactiveKotlinVersion}",
                             "org.glassfish:javax.annotation:$javaxAnnotationVersion",
@@ -148,10 +141,6 @@ ext {
 
                     ],
                     annotationProcessor : [
-                            "com.google.dagger:dagger-compiler:$daggerVersion",
-                          //  "org.parceler:parceler:$parcelerVersion",
-                            "com.google.dagger:dagger-compiler:$daggerVersion",
-                            "com.google.dagger:dagger-android-processor:$daggerVersion"
                     ],
                     compileOnly : [
                     ],

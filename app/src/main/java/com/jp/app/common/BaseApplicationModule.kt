@@ -3,10 +3,7 @@ package com.jp.app.common
 import android.app.Application
 import android.content.Context
 import com.jp.app.SampleApplication
-import com.jp.app.injector.module.NetworkModule
-import com.jp.app.injector.module.PreferencesModule
-import com.jp.app.injector.module.RepositoryModule
-import com.jp.app.injector.module.UseCaseModule
+import com.jp.app.injector.module.*
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
