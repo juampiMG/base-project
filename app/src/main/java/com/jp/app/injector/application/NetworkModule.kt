@@ -1,4 +1,4 @@
-package com.jp.app.injector.module
+package com.jp.app.injector.application
 
 import android.content.Context
 import com.jp.app.SampleApplication

@@ -1,4 +1,4 @@
-package com.jp.app.injector.module
+package com.jp.app.injector.application
 
 import com.jp.data.repository.SampleRepository
 import com.jp.domain.repository.ISampleRepository

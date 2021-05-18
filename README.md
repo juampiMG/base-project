@@ -6,7 +6,7 @@ Clean Architecture
 
 FrameWorks:
 
-Dagger 2 (Dagger Injector)
+Dagger Hilt
 
 Retrofit2
 

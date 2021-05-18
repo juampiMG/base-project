@@ -1,4 +1,4 @@
-package com.jp.app.injector.module
+package com.jp.app.injector.application
 
 import com.jp.domain.interactor.IGetSampleUseCase
 import com.jp.domain.interactor.impl.GetSampleUseCase
