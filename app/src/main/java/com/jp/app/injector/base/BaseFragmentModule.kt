@@ -1,4 +1,4 @@
-package com.jp.app.common
+package com.jp.app.injector.base
 
 import android.app.Activity
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.jp.app.common
+package com.jp.app.injector.base
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
@@ -16,7 +16,7 @@ object BaseActivityModule {
 
     @Provides
     internal fun activityExtras(activity: FragmentActivity): Bundle {
-        return activity.intent.extras?.let { it } ?: run { Bundle() }
+        return activity.intent.extras ?: run { Bundle() }
     }
 
     @Provides
