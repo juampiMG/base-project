@@ -22,7 +22,7 @@ import javax.inject.Singleton
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class PreferencesModule {
+object PreferencesModule {
 
     @Provides
     @Singleton
