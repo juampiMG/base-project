@@ -21,6 +21,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.generic_loading.*
@@ -30,11 +31,7 @@ import javax.inject.Inject
 /**
  * Base Activity all the activities must inherit from this class
  */
-
-abstract class BaseActivity<TActivityViewModel : IBaseActivityViewModel> : AppCompatActivity(), HasSupportFragmentInjector, LifecycleOwner, IBaseActivityCallback {
-
-    @set:Inject
-    internal lateinit var mFragmentInjector: DispatchingAndroidInjector<Fragment>
+abstract class BaseActivity<TActivityViewModel : IBaseActivityViewModel> : AppCompatActivity(), LifecycleOwner, IBaseActivityCallback {
 
     @Inject
     lateinit var mExtras: Bundle  //Useful to pass data between fragments with the same activity
@@ -55,14 +52,8 @@ abstract class BaseActivity<TActivityViewModel : IBaseActivityViewModel> : AppCo
     private var mCompositeDisposable: CompositeDisposable? = null
 
 
-    // =============== HasFragmentInjector =========================================================
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return mFragmentInjector
-    }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         mLayoutId = getLayoutId()
         setContentView(mLayoutId)

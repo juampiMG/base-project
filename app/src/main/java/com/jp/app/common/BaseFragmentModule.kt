@@ -5,15 +5,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.jp.app.helper.DialogHelper
-import com.jp.app.injector.scope.PerFragment
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.FragmentComponent
 import javax.inject.Named
 
 /**
  * Provides base fragment dependencies. This must be included in all fragment modules, which must
  * provide a concrete implementation of [Fragment].
  */
+@InstallIn(FragmentComponent::class)
 @Module
 object BaseFragmentModule {
 
@@ -22,26 +24,25 @@ object BaseFragmentModule {
     const val FRAGMENT_DIALOG_HELPER = "BaseFragmentModule.dialogHelper"
 
 
-    @JvmStatic
     @Provides
-    @PerFragment
     internal fun activity(activity: FragmentActivity): Activity {
         return activity
     }
 
-    @JvmStatic
+
     @Provides
     @Named(CHILD_FRAGMENT_MANAGER)
-    @PerFragment
     internal fun childSupportFragment(@Named(FRAGMENT) fragment: Fragment): FragmentManager {
         return fragment.childFragmentManager
     }
 
-    @JvmStatic
+
     @Provides
     @Named(FRAGMENT_DIALOG_HELPER)
-    @PerFragment
-    internal fun dialogHelper(activity: FragmentActivity, @Named(CHILD_FRAGMENT_MANAGER) fragmentManager: FragmentManager): DialogHelper {
+    internal fun dialogHelper(
+        activity: FragmentActivity,
+        @Named(CHILD_FRAGMENT_MANAGER) fragmentManager: FragmentManager
+    ): DialogHelper {
         return DialogHelper(activity, fragmentManager)
     }
 

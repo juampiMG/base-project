@@ -4,9 +4,9 @@ ext {
     androidMaterialVersion = '1.1.0-alpha05'
     servicesVersion = '17.0.0'
     multidexVersion = '2.0.0'               // https://developer.android.com/jetpack/androidx/migrate
-    lifecycleVersion = '2.0.0-rc01'         // https://developer.android.com/jetpack/androidx/migrate
     constraintsLayoutVersion = '2.0.0-beta3'      // https://developer.android.com/jetpack/androidx/migrate
     daggerVersion = '2.22.1'                // https://github.com/google/dagger
+    hiltViewModelVersion = '1.0.0-alpha01'
     androidxLifecycleVersion = '2.2.0'
     androidxActivityVersion = '1.2.0-alpha04'
     androidxFragmentVersion = '1.3.0-alpha04'
@@ -48,10 +48,10 @@ ext {
                             "androidx.constraintlayout:constraintlayout:$constraintsLayoutVersion",
                             "androidx.activity:activity-ktx:$androidxActivityVersion",
                             "androidx.fragment:fragment-ktx:$androidxFragmentVersion",
-
+                            "com.google.dagger:hilt-android:$ext.hiltVersion",
+                            "androidx.hilt:hilt-lifecycle-viewmodel:$hiltViewModelVersion",
                             "com.google.dagger:dagger-android-support:$daggerVersion",
                             "androidx.lifecycle:lifecycle-extensions:$androidxLifecycleVersion",
-                            
                             "com.squareup.retrofit2:retrofit:$retrofitVersion",
                             "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
                             "com.squareup.retrofit2:converter-gson:$retrofitVersion",
@@ -66,7 +66,6 @@ ext {
                             "com.github.bumptech.glide:glide:$glideVersion",
                             "joda-time:joda-time:$jodaTimeVersion",
                             "com.amitshekhar.android:rx2-android-networking:$rx2FastAndroidNetworking",
-                            "android.arch.lifecycle:extensions:$lifecycleVersion",
                             "com.airbnb.android:lottie:$lottieVersion",
                             "androidx.appcompat:appcompat:$appCompatVersion"
                     ],
@@ -79,12 +78,15 @@ ext {
                             "org.mockito:mockito-core:$mockitoVersion",
                             "org.robolectric:robolectric:$robolectricVersion",
                             "com.squareup.assertj:assertj-android:$assertJAndroidVersion",
-                            "com.google.dagger:dagger-android-support:$daggerVersion"
+                            "com.google.dagger:dagger-android-support:$daggerVersion",
+                            "com.google.dagger:hilt-android-testing:$ext.hiltVersion"
                     ],
                     kapt : [
                             "com.github.bumptech.glide:compiler:$glideVersion",
                             "com.google.dagger:dagger-compiler:$daggerVersion",
-                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                            "com.google.dagger:dagger-android-processor:$daggerVersion",
+                            "com.google.dagger:hilt-compiler:$ext.hiltVersion",
+                            "androidx.hilt:hilt-compiler:$hiltViewModelVersion"
                     ]
             ],
             domain : [
@@ -92,6 +94,7 @@ ext {
                             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$ext.kotlinVersion",
                           //  "org.parceler:parceler-api:$parcelerVersion",
                             "com.google.dagger:dagger-android-support:$daggerVersion",
+                            "com.google.dagger:hilt-android:$ext.hiltVersion",
                             "io.reactivex.rxjava2:rxandroid:$reactiveAndroidVersion",
                             "io.reactivex.rxjava2:rxkotlin:${reactiveKotlinVersion}",
                             "org.modelmapper:modelmapper:$modelmapperVersion"
@@ -115,7 +118,8 @@ ext {
                     ],
                     kapt : [
                             "com.google.dagger:dagger-compiler:$daggerVersion",
-                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                            "com.google.dagger:dagger-android-processor:$daggerVersion",
+                            "com.google.dagger:hilt-compiler:$ext.hiltVersion"
                     ]
             ],
             data : [
@@ -123,7 +127,7 @@ ext {
                             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$ext.kotlinVersion",
                             "com.google.android.gms:play-services-gcm:$servicesVersion",
                             "com.google.dagger:dagger-android-support:$daggerVersion",
-
+                            "com.google.dagger:hilt-android:$ext.hiltVersion",
                             "com.squareup.retrofit2:retrofit:$retrofitVersion",
                             "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
                             "com.squareup.retrofit2:converter-gson:$retrofitVersion",
@@ -148,7 +152,8 @@ ext {
                     ],
                     kapt : [
                             "com.google.dagger:dagger-compiler:$daggerVersion",
-                            "com.google.dagger:dagger-android-processor:$daggerVersion"
+                            "com.google.dagger:dagger-android-processor:$daggerVersion",
+                            "com.google.dagger:hilt-compiler:$ext.hiltVersion"
                     ]
             ]
     ]

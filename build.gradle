@@ -2,13 +2,15 @@ apply from: 'buildSystem/dependencies.gradle'
 
 buildscript {
     ext.kotlinVersion = '1.4.30'
+    ext.hiltVersion = '2.35.1'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     }
 }
 

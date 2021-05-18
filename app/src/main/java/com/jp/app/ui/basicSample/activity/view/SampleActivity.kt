@@ -5,11 +5,14 @@ import com.jp.app.R
 import com.jp.app.common.activity.BaseActivity
 import com.jp.app.ui.basicSample.activity.viewModel.ISampleActivityViewModel
 import com.jp.app.ui.basicSample.view.SampleFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Remember to add activity to the AndroidManifest.xml and to the InjectorModule.kt
  */
-class SampleActivity : BaseActivity<ISampleActivityViewModel>(),
+@AndroidEntryPoint
+class SampleActivity @Inject constructor(): BaseActivity<ISampleActivityViewModel>(),
         SampleFragment.FragmentCallback {
 
     override fun getLayoutId(): Int {

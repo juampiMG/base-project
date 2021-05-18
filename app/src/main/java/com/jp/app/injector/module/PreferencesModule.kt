@@ -12,11 +12,15 @@ import com.jp.data.utils.AdvancedPreferences
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
  * Provides application-wide dependencies.
  */
+@InstallIn(SingletonComponent::class)
 @Module
 class PreferencesModule {
 
@@ -40,13 +44,13 @@ class PreferencesModule {
 
     @Provides
     @Singleton
-    internal fun credentialsPreferenceManager(context: Context, preferences: AdvancedPreferences): CredentialsPreferenceManager {
+    internal fun credentialsPreferenceManager(@ApplicationContext context: Context, preferences: AdvancedPreferences): CredentialsPreferenceManager {
         return CredentialsPreferenceManager(context, preferences)
     }
 
     @Provides
     @Singleton
-    internal fun localePreferenceManager(context: Context): LocalePreferenceManager {
+    internal fun localePreferenceManager(@ApplicationContext context: Context): LocalePreferenceManager {
         return LocalePreferenceManager(context)
     }
 

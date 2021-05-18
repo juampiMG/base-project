@@ -4,19 +4,20 @@ import android.os.Bundle
 import com.jp.app.R
 import com.jp.app.common.view.BaseFragment
 import com.jp.app.common.view.IBaseFragmentCallback
-import com.jp.app.ui.basicSample.activity.view.SampleActivity
 import com.jp.app.ui.basicSample.viewModel.SampleFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Basic Fragment
  */
+@AndroidEntryPoint
 class SampleFragment : BaseFragment<SampleFragmentViewModel, SampleFragment.FragmentCallback>() {
     override fun getLayoutId(): Int {
         return R.layout.sample_fragment
     }
 
     interface FragmentCallback : IBaseFragmentCallback {
-        fun loadFromActivityGame ()
+        fun loadFromActivityGame()
     }
 
 
@@ -49,7 +50,6 @@ class SampleFragment : BaseFragment<SampleFragmentViewModel, SampleFragment.Frag
 
     override fun applyRTLChanges() {
     }
-
 
 
 }

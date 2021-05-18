@@ -18,6 +18,9 @@ import com.jp.data.network.gateway.retrofit.service.IRestServices
 import com.jp.app.BuildConfig
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,6 +31,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
+@InstallIn(SingletonComponent::class)
 @Module
 object NetworkModule {
     private const val HTTP_CACHE_MAX_AGE = 60 * 10              // read from cache for 10 minutes
@@ -35,7 +39,6 @@ object NetworkModule {
     private const val CONNECT_TIME_OUT = 30.toLong()
     private const val READ_TIME_OUT = 2.toLong()
 
-    @JvmStatic
     @Singleton
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
@@ -49,31 +52,31 @@ object NetworkModule {
         return logging
     }
 
-    @JvmStatic
+
     @Singleton
     @Provides
-    fun provideRequestInterceptor(context: Context): RequestInterceptor {
+    fun provideRequestInterceptor(@ApplicationContext context: Context): RequestInterceptor {
         return RequestInterceptor(context)
     }
 
-    @JvmStatic
+
     @Provides
     @Singleton
-    fun cacheInterceptor(context: Context): HttpCacheInterceptor {
+    fun cacheInterceptor(@ApplicationContext context: Context): HttpCacheInterceptor {
         val httpCacheInterceptor = HttpCacheInterceptor(context)
         httpCacheInterceptor.cacheMaxAge = HTTP_CACHE_MAX_AGE
         httpCacheInterceptor.cacheMaxStale = HTTP_CACHE_MAX_STALE
         return httpCacheInterceptor
     }
 
-    @JvmStatic
+
     @Singleton
     @Provides
-    fun provideRequestAuthInterceptor(context: Context, credentialsPreferenceManager: CredentialsPreferenceManager): RequestAuthInterceptor {
+    fun provideRequestAuthInterceptor(@ApplicationContext context: Context, credentialsPreferenceManager: CredentialsPreferenceManager): RequestAuthInterceptor {
         return RequestAuthInterceptor(context, credentialsPreferenceManager)
     }
 
-    @JvmStatic
+
     @Singleton
     @Provides
     fun provideOkHttpClient(
@@ -92,7 +95,7 @@ object NetworkModule {
         return builder.build()
     }
 
-    @JvmStatic
+
     @Singleton
     @Provides
     @Named("Auth")
@@ -117,7 +120,7 @@ object NetworkModule {
 
     // RetrofitService =============================================================================
 
-    @JvmStatic
+
     @Singleton
     @Provides
     fun provideRestServices(okHttpClient: OkHttpClient): IRestServices {
@@ -132,7 +135,7 @@ object NetworkModule {
         return restAdapter.create(IRestServices::class.java)
     }
 
-    @JvmStatic
+
     @Singleton
     @Provides
     fun provideAuthRestServices(@Named("Auth") okHttpClient: OkHttpClient): IAuthRestServices {
@@ -155,14 +158,14 @@ object NetworkModule {
      * then use AppMockGateway
      */
 
-    @JvmStatic
+
     @Provides
     @Singleton
     internal fun appGateway(service: IRestServices, urlPreferenceManager: URLPreferenceManager): IAppGateway {
         return AppGateway(service, urlPreferenceManager)
     }
 
-    @JvmStatic
+
     @Provides
     @Singleton
     internal fun appAuthGateway(service: IAuthRestServices, urlPreferenceManager: URLPreferenceManager): IAppAuthGateway {

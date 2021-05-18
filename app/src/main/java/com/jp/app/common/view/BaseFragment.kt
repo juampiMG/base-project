@@ -14,31 +14,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
-import com.jp.app.common.BaseFragmentModule
 import com.jp.app.common.activity.IBaseActivityCallback
 import com.jp.app.common.viewModel.IBaseFragmentViewModel
 import com.jp.app.helper.DialogHelper
 import com.jp.app.helper.NavigationHelper
 import com.jp.app.utils.GeneralUtils
 import com.jp.app.utils.ViewUtils.isRTL
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.generic_loading.*
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Named
 
 interface IBaseFragmentCallback : IBaseActivityCallback {}
 
-abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBaseFragmentCallback> : DaggerFragment() {
-
-    @Inject
-    @field:Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
-    lateinit var mChildSupportFragment: FragmentManager
+abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBaseFragmentCallback> :
+    Fragment() {
 
     @Inject
     lateinit var mCallback: TCallback
@@ -58,9 +47,6 @@ abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBa
     @Inject
     lateinit var mActivity: FragmentActivity
 
-    @Inject
-    lateinit var mChildFragmentInjector: DispatchingAndroidInjector<Fragment>
-
     var currentChildFragment: Fragment? = null
 
     private var mFragmentId: String? = null
@@ -70,17 +56,10 @@ abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBa
     var mIsCurrentChildFragmentLoad = false
 
 
-    // =============== HasFragmentInjector =========================================================
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return mChildFragmentInjector
-    }
-
     /**
      * set the LayoutID and the ViewModel for the target fragment
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         mLayoutId = getLayoutId()
@@ -100,7 +79,11 @@ abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBa
     /**
      * Inflate the target layout
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(mLayoutId, container, false)
     }
 
@@ -126,7 +109,7 @@ abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBa
      * to the fragment view <include layout="@layout/generic_loading" />
      */
     private fun subscribeLoading() {
-        mViewModel.showIsLoading().observe(viewLifecycleOwner,  { isLoading ->
+        mViewModel.showIsLoading().observe(viewLifecycleOwner, { isLoading ->
             if (isLoading != null) isLoadingAtFragment(isLoading)
         })
     }
@@ -220,7 +203,11 @@ abstract class BaseFragment<TViewModel : IBaseFragmentViewModel, TCallback : IBa
     /**
      * By default calls [.onRequestPermissionsResult]. You may override this.
      */
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         val deniedPermissions = ArrayList<String>()
 
         for (i in permissions.indices) {
