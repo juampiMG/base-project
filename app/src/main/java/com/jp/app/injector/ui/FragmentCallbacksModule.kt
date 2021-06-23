@@ -6,11 +6,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.FragmentComponent
 
 /**
  * Module that Binds all the FragmentCallbacks to the Actvities
  */
-@InstallIn(ActivityComponent::class)
+@InstallIn(FragmentComponent::class)
 @Module
 abstract class FragmentCallbacksModule {
     /**
